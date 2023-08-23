@@ -1,10 +1,55 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PagesComponent } from './pages.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CustomerComponent } from './customer/customer.component';
+import { CategoryComponent } from './category/category.component';
+import { SoftenerComponent } from './softener/softener.component';
+import { ReportComponent } from './report/report.component';
+import { StaffComponent } from './staff/staff.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    component: PagesComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
+
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+      },
+      {
+        path: 'customer',
+        component: CustomerComponent,
+      },
+      {
+        path: 'category',
+        component: CategoryComponent,
+      },
+      {
+        path: 'softener',
+        component: SoftenerComponent,
+      },
+      {
+        path: 'staff',
+        component: StaffComponent,
+      },
+      {
+        path: 'report',
+        component: ReportComponent,
+      },
+      
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PagesRoutingModule { }
+export class PagesRoutingModule {}

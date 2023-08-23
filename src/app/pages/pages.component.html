@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand bg-white shadow-sm z-1">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <h3 class="navbar-brand navbar-nav me-auto mb-2 mb-0" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" role="button">
+          <img src="assets/images/enigma.jpeg" alt="Logo" width="24" height="24"
+               class="d-inline-block align-text-top me-2">
+          TokonyaDia
+        </h3>
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+            Profile
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="profile">Profile</a></li>
+            <li><a class="dropdown-item" role="button" (click)="logOutHandler()">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid ">
+    <div class="row">
+      <div class="col-sm-3 bg-white vh-100 pt-2 ">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item rounded-1" [class.active]="side.url === currentPage"
+              *ngFor="let side of sidebar let i = index">
+            <a class="nav-link" routerLink="{{side.url}}" role="button">{{side.name}}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-9 bg-body-tertiary">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  

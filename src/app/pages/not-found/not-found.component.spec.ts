@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StafComponent } from './staf.component';
+import { NotFoundComponent } from './not-found.component';
 
-describe('StafComponent', () => {
-  let component: StafComponent;
-  let fixture: ComponentFixture<StafComponent>;
+describe('NotFoundComponent', () => {
+  let component: NotFoundComponent;
+  let fixture: ComponentFixture<NotFoundComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [StafComponent]
+      declarations: [NotFoundComponent]
     });
-    fixture = TestBed.createComponent(StafComponent);
+    fixture = TestBed.createComponent(NotFoundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

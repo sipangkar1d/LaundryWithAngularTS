@@ -2,20 +2,31 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PagesRoutingModule } from './pages-routing.module';
-import { StafComponent } from './staf/staf.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CategoryComponent } from './category/category.component';
+import { PagesComponent } from './pages.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ReportComponent } from './report/report.component';
+import { SoftenerComponent } from './softener/softener.component';
+import { StaffComponent } from './staff/staff.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    StafComponent,
     CustomerComponent,
-    CategoryComponent
+    CategoryComponent,
+    PagesComponent,
+    DashboardComponent,
+    ReportComponent,
+    SoftenerComponent,
+    StaffComponent
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class PagesModule { }
