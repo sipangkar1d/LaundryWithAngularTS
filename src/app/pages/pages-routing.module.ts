@@ -18,7 +18,6 @@ const routes: Routes = [
         redirectTo: 'dashboard',
         pathMatch: 'full',
       },
-
       {
         path: 'dashboard',
         component: DashboardComponent,
@@ -28,22 +27,37 @@ const routes: Routes = [
         component: CustomerComponent,
       },
       {
+        path: 'customer/:id',
+        component: CustomerComponent,
+      },
+      {
         path: 'category',
         component: CategoryComponent,
       },
       {
-        path: 'softener',
-        component: SoftenerComponent,
+        path: 'category/:id',
+        component: CategoryComponent,
       },
       {
         path: 'staff',
         component: StaffComponent,
       },
       {
+        path: 'staff/:id',
+        component: StaffComponent,
+      },
+      {
+        path: 'softener',
+        component: SoftenerComponent,
+      },
+      {
         path: 'report',
         component: ReportComponent,
       },
-      
+      {
+        path: 'report/:id',
+        component: ReportComponent,
+      },
     ],
   },
 ];
