@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
-  styleUrls: ['./pages.component.css']
+  styleUrls: ['./pages.component.css','./../app.component.css']
 })
 export class PagesComponent {
 
