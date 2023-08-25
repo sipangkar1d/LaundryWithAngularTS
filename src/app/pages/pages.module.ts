@@ -7,10 +7,9 @@ import { CategoryComponent } from './category/category.component';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReportComponent } from './report/report.component';
-import { SoftenerComponent } from './softener/softener.component';
 import { StaffComponent } from './staff/staff.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -19,14 +18,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PagesComponent,
     DashboardComponent,
     ReportComponent,
-    SoftenerComponent,
-    StaffComponent
+    StaffComponent,
+    ProductComponent,
   ],
-  imports: [
-    CommonModule,
-    PagesRoutingModule,
-    ReactiveFormsModule,
-    FormsModule
-  ]
+  imports: [CommonModule, PagesRoutingModule, ReactiveFormsModule, FormsModule],
 })
-export class PagesModule { }
+export class PagesModule {}

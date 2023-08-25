@@ -27,8 +27,8 @@ export class PagesComponent {
       "name": "Category"
     },
     {
-      "url": 'softener',
-      "name": "Softener"
+      "url": 'product',
+      "name": "Product"
     },
     {
       "url": 'staff',

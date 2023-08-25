@@ -10,10 +10,10 @@
           >
             <div class="d-flex justify-content-center py-4">
               <a
-                href="../../../assets/img/pp.jpg"
+                href="#"
                 class="logo d-flex align-items-center w-auto"
               >
-                <img src="assets/img/logo.png" alt="" />
+                <img src="../../../assets/img/pp.jpg" alt="" />
                 <span class="d-none d-lg-block">Laundry GPT-5</span>
               </a>
             </div>
@@ -30,44 +30,72 @@
                   </p>
                 </div>
 
-                <!-- <form class="row g-3 needs-validation" > -->
+                <form
+                  class="row g-3 needs-validation"
+                  [formGroup]="loginForm"
+                  (ngSubmit)="login(loginForm.value)"
+                >
                   <div class="col-12">
-                    <label for="yourUsername" class="form-label"
-                      >Username</label
+                    <label for="email" class="form-label">Email</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      formControlName="email"
+                    />
+                    <div
+                      *ngIf="
+                        (form('email').invalid && form('email').dirty) ||
+                        form('email').touched
+                      "
                     >
-                    <div class="input-group has-validation">
-                      <input
-                        type="text"
-                        name="username"
-                        class="form-control"
-                        id="yourUsername"
-                        required
-                      />
-                      <div class="invalid-feedback">
-                        Please enter your username.
-                      </div>
+                      <p
+                        class="text-danger"
+                        *ngIf="form('email').errors?.['required']"
+                      >
+                        Email is required
+                      </p>
                     </div>
                   </div>
 
                   <div class="col-12">
-                    <label for="yourPassword" class="form-label"
-                      >Password</label
-                    >
+                    <label for="password" class="form-label">Password</label>
                     <input
                       type="password"
-                      name="password"
                       class="form-control"
-                      id="yourPassword"
-                      required
+                      id="password"
+                      formControlName="password"
                     />
-                    <div class="invalid-feedback">
-                      Please enter your password!
+                    <div
+                      *ngIf="
+                        (form('password').invalid && form('password').dirty) ||
+                        form('password').touched
+                      "
+                    >
+                      <p
+                        class="text-danger"
+                        *ngIf="form('password').errors?.['password']"
+                      >
+                        Password is required
+                      </p>
                     </div>
                   </div>
 
                   <div class="col-12">
-                    <button class="btn btn-primary w-100" (click)="login()">
+                    <button
+                      type="submit"
+                      class="btn btn-primary w-100"
+                      aria-describedby="login-btn"
+                      [disabled]="loginForm.invalid || isLoading"
+                    >
                       Login
+                      <div
+                        class="spinner-border spinner-border-sm"
+                        role="status"
+                        *ngIf="isLoading"
+                      >
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
                     </button>
                   </div>
                   <div class="col-12">
@@ -76,7 +104,7 @@
                       <a routerLink="/auth/register">Register Now</a>
                     </p>
                   </div>
-                <!-- </form> -->
+                </form>
               </div>
             </div>
           </div>

@@ -4,9 +4,9 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CategoryComponent } from './category/category.component';
-import { SoftenerComponent } from './softener/softener.component';
 import { ReportComponent } from './report/report.component';
 import { StaffComponent } from './staff/staff.component';
+import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
   {
@@ -47,8 +47,8 @@ const routes: Routes = [
         component: StaffComponent,
       },
       {
-        path: 'softener',
-        component: SoftenerComponent,
+        path: 'product',
+        component: ProductComponent,
       },
       {
         path: 'report',
