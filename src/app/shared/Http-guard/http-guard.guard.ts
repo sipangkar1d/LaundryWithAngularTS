@@ -1,5 +1,13 @@
-import { CanActivateFn } from '@angular/router';
+import {CanActivateFn, Router} from '@angular/router';
+import {inject} from "@angular/core";
 
 export const httpGuardGuard: CanActivateFn = (route, state) => {
-  return true;
+  const router = inject(Router)
+
+  if (sessionStorage.getItem('token')){
+    return true
+  } else {
+    router.navigateByUrl('/auth/login')
+    return false
+  }
 };

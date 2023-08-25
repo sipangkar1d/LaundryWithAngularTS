@@ -1,115 +1,59 @@
-<main>
-  <div class="container">
-    <section
-      class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4"
-    >
-      <div class="container">
-        <div class="row justify-content-center">
-          <div
-            class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center"
-          >
-            <div class="d-flex justify-content-center py-4">
-              <a
-                href="#"
-                class="logo d-flex align-items-center w-auto"
+<div class="login-page">
+  <mat-card class="mat-elevation-z12">
+    <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+      <mat-tab class="tab-label" label="Login">
+        <mat-card-content>
+          <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+            <mat-form-field>
+              <input matInput placeholder="Email" formControlName="email" />
+              <mat-error *ngIf="loginForm.get('email')?.hasError('required')"
+                >Email is required</mat-error
               >
-                <img src="../../../assets/img/pp.jpg" alt="" />
-                <span class="d-none d-lg-block">Laundry GPT-5</span>
-              </a>
-            </div>
-            <!-- End Logo -->
-
-            <div class="card mb-3">
-              <div class="card-body">
-                <div class="pt-4 pb-2">
-                  <h5 class="card-title text-center pb-0 fs-4">
-                    Login to Your Account
-                  </h5>
-                  <p class="text-center small">
-                    Enter your username & password to login
-                  </p>
-                </div>
-
-                <form
-                  class="row g-3 needs-validation"
-                  [formGroup]="loginForm"
-                  (ngSubmit)="login(loginForm.value)"
-                >
-                  <div class="col-12">
-                    <label for="email" class="form-label">Email</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="email"
-                      formControlName="email"
-                    />
-                    <div
-                      *ngIf="
-                        (form('email').invalid && form('email').dirty) ||
-                        form('email').touched
-                      "
-                    >
-                      <p
-                        class="text-danger"
-                        *ngIf="form('email').errors?.['required']"
-                      >
-                        Email is required
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="col-12">
-                    <label for="password" class="form-label">Password</label>
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="password"
-                      formControlName="password"
-                    />
-                    <div
-                      *ngIf="
-                        (form('password').invalid && form('password').dirty) ||
-                        form('password').touched
-                      "
-                    >
-                      <p
-                        class="text-danger"
-                        *ngIf="form('password').errors?.['password']"
-                      >
-                        Password is required
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="col-12">
-                    <button
-                      type="submit"
-                      class="btn btn-primary w-100"
-                      aria-describedby="login-btn"
-                      [disabled]="loginForm.invalid || isLoading"
-                    >
-                      Login
-                      <div
-                        class="spinner-border spinner-border-sm"
-                        role="status"
-                        *ngIf="isLoading"
-                      >
-                        <span class="visually-hidden">Loading...</span>
-                      </div>
-                    </button>
-                  </div>
-                  <div class="col-12">
-                    <p class="small mb-0">
-                      Don't have account?
-                      <a routerLink="/auth/register">Register Now</a>
-                    </p>
-                  </div>
-                </form>
+              <mat-error *ngIf="loginForm.get('email')?.hasError('email')"
+                >Invalid email format</mat-error
+              >
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Password"
+                type="password"
+                formControlName="password"
+              />
+              <mat-error *ngIf="loginForm.get('password')?.hasError('required')"
+                >Password is required</mat-error
+              >
+              <mat-error
+                *ngIf="loginForm.get('password')?.hasError('minlength')"
+                >Password must be of length 6</mat-error
+              >
+              <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+            <mat-checkbox>Remember Me!</mat-checkbox>
+            <button
+              mat-raised-button
+              color="primary"
+              class="login-button"
+              type="submit"
+              [disabled]="loginForm.invalid || isLoading"
+            >
+              Login
+              <div
+                class="spinner-border spinner-border-sm"
+                role="status"
+                *ngIf="isLoading"
+              >
+                <span class="visually-hidden">Loading...</span>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-</main>
+            </button>
+            <!--            <button mat-raised-button class="login-button">Login with Google</button>-->
+          </form>
+          <p class="centered-text">
+            Don't have an account? <a (click)="goToRegister()">Sign Up</a>
+          </p>
+        </mat-card-content>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>

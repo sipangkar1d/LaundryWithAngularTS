@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthRequest } from '../model/auth-request';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -11,36 +12,48 @@ import { AuthRequest } from '../model/auth-request';
 })
 export class LoginComponent {
   constructor(
+    private readonly fb: FormBuilder,
     private readonly authService: AuthService,
     private readonly router: Router
-  ) {}
+  ) 
+  {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
+    });
+  }
 
-  isLoading: boolean = false;
-
-  loginForm = new FormGroup<any>({
-    email: new FormControl(null, [Validators.required]),
-    password: new FormControl(null, [Validators.required]),
-  });
+  loginForm : FormGroup = new FormGroup({
+    email : new FormControl(''),
+    password : new FormControl('')
+  })
 
   form(property: string) {
     return this.loginForm.get(property) as FormGroup;
   }
 
-  login(user: AuthRequest) {
+  isLoading: boolean = false;
+
+  onLogin(data: AuthRequest) {
     this.isLoading = true;
-    this.authService.login(user).subscribe({
-      next: (res) => {
-        let token = res.data.token;
-        sessionStorage.setItem('token', token);
-        console.log(token);
-        this.router.navigateByUrl('pages');
-      },
-      error: (err) => {
+    console.log("Login Request : ", data)
+    this.authService.login(data).subscribe({
+      next : (res) => {
         this.isLoading = false;
+        let token = res.data.token
+        if (token) {
+          sessionStorage.setItem('token', token)
+          this.router.navigateByUrl('/pages')
+        }
       },
-      complete: () => {
+      error : (err) => {
         this.isLoading = false;
-      },
-    });
+        Swal.fire('Invalid email / password')
+      }
+    })
+  }
+
+  goToRegister() {
+    this.router.navigate(['/auth/register']);
   }
 }

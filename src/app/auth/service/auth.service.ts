@@ -1,21 +1,24 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthRequest } from '../model/auth-request';
-import { ResponseWrapper } from 'src/app/shared/model/response-wrapper';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import { AuthResponseWrapper } from '../model/auth-response';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private readonly http: HttpClient) {
+  constructor(
+    private readonly http: HttpClient
+  ) { }
+
+  public login (data : any) : Observable<any> {
+    return this.http.post<AuthResponseWrapper>('/api/auth/login', data)
   }
 
-  // register(request: AuthRequest) {
-  //   return this.http.post<ResponseWrapper<any>>("api/auth/register-admin", request)
-  // }
 
-  login(request: AuthRequest) {
-    return this.http.post<ResponseWrapper<any>>("api/auth/login", request)
+  public register (data : any) : Observable<any> {
+    return this.http.post<AuthResponseWrapper>('/api/auth/register', data)
   }
 }

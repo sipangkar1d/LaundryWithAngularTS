@@ -3,16 +3,53 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor, HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {catchError, Observable, throwError} from 'rxjs';
+import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 @Injectable()
 export class ConfigInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(
+    private readonly router: Router
+  ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request);
+    const token = sessionStorage.getItem('token');
+
+    const modifiedRequest = request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    return next.handle(modifiedRequest).pipe(
+      catchError((error: HttpErrorResponse) => {
+        let errorMessage = 'An error occurred';
+
+        if (error.status === 400) {
+          errorMessage = 'Bad Request';
+        } else if (error.status === 401) {
+          errorMessage = 'Unauthorized';
+          this.router.navigate(['/auth/login']);
+        } else if (error.status === 404) {
+          errorMessage = 'Not Found';
+          // this.router.navigate(['/pages/dasboard']);
+        } else if (error.status === 500) {
+          errorMessage = 'Server Error';
+        }
+
+        Swal.fire({
+          title: 'Error!',
+          text: errorMessage,
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+
+        return throwError(error);
+      })
+    );
   }
 }
