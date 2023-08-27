@@ -10,6 +10,7 @@ import { ReportComponent } from './report/report.component';
 import { StaffComponent } from './staff/staff.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductComponent } from './product/product.component';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ProductComponent } from './product/product.component';
     ReportComponent,
     StaffComponent,
     ProductComponent,
+    LandingComponent,
   ],
   imports: [CommonModule, PagesRoutingModule, ReactiveFormsModule, FormsModule],
 })

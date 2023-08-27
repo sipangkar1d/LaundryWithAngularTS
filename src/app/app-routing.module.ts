@@ -5,8 +5,13 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth',
+    redirectTo: 'landing-page',
     pathMatch: 'full',
+  },
+  {
+    path: 'landing-page',
+    loadChildren: () =>
+      import('src/app/landing-page/landing-page.module').then((module) => module.LandingPageModule),
   },
   {
     path: 'auth',

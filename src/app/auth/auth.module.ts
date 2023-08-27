@@ -13,13 +13,19 @@ import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatButtonModule} from "@angular/material/button";
+import { LandingPageComponent } from '../landing-page/landing-page.component';
+import { HomeComponent } from '../landing-page/home/home.component';
+import { ServiceComponent } from '../landing-page/service/service.component';
+import { AboutComponent } from '../landing-page/about/about.component';
+import { TeamComponent } from '../landing-page/team/team.component';
+import { ContactComponent } from '../landing-page/contact/contact.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    AuthComponent,
+    AuthComponent
   ],
   imports: [
     CommonModule,

@@ -7,6 +7,7 @@ import { CategoryComponent } from './category/category.component';
 import { ReportComponent } from './report/report.component';
 import { StaffComponent } from './staff/staff.component';
 import { ProductComponent } from './product/product.component';
+import {LandingComponent} from "./landing/landing.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
+      },
+      {
+        path: 'landing-page',
+        component: LandingComponent,
       },
       {
         path: 'dashboard',
