@@ -1,18 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import {httpGuardGuard} from "./shared/Http-guard/http-guard.guard";
+import {LandingPageComponent} from "./landing-page/landing-page.component";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'landing-page',
-    pathMatch: 'full',
-  },
-  {
-    path: 'landing-page',
-    loadChildren: () =>
-      import('src/app/landing-page/landing-page.module').then((module) => module.LandingPageModule),
+    component: LandingPageComponent
   },
   {
     path: 'auth',
@@ -23,7 +17,6 @@ const routes: Routes = [
     path: 'pages',
     loadChildren: () =>
       import('src/app/pages/pages.module').then((module) => module.PagesModule),
-    canActivate: [httpGuardGuard]
   },
   {
     path: '**',
