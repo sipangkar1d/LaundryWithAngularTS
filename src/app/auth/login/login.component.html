@@ -39,11 +39,7 @@
               [disabled]="loginForm.invalid || isLoading"
             >
               Login
-              <div
-                class="spinner-border spinner-border-sm"
-                role="status"
-                *ngIf="isLoading"
-              >
+              <div class="spinner-border spinner-border-sm" role="status" *ngIf="isLoading">
                 <span class="visually-hidden">Loading...</span>
               </div>
             </button>

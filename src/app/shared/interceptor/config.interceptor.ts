@@ -36,7 +36,7 @@ export class ConfigInterceptor implements HttpInterceptor {
           this.router.navigate(['/auth/login']);
         } else if (error.status === 404) {
           errorMessage = 'Not Found';
-          // this.router.navigate(['/pages/dasboard']);
+          this.router.navigate(['/pages/dasboard']);
         } else if (error.status === 500) {
           errorMessage = 'Server Error';
         }

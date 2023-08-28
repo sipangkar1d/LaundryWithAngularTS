@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import {httpGuardGuard} from "./shared/Http-guard/http-guard.guard";
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
     path: 'pages',
     loadChildren: () =>
       import('src/app/pages/pages.module').then((module) => module.PagesModule),
+    canActivate: [httpGuardGuard]
   },
   {
     path: '**',
