@@ -27,6 +27,15 @@
             "styles": [
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "bootstrap/scss/bootstrap.scss",
+              "src/assets/vendor/bootstrap/css/bootstrap.min.css",
+              "src/assets/vendor/bootstrap-icons/bootstrap-icons.css",
+              "src/assets/vendor/boxicons/css/boxicons.min.css",
+              "src/assets/vendor/quill/quill.snow.css",
+              "src/assets/vendor/quill/quill.bubble.css",
+              "src/assets/vendor/remixicon/remixicon.css",
+              "src/assets/vendor/simple-datatables/style.css",
+              "src/assets/css/style.css",
+
               "src/styles.css"
             ],
             "scripts": [
