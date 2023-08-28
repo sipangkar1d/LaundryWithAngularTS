@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
-  styleUrls: ['./pages.component.css','./../app.component.css']
+  styleUrls: ['./pages.component.css']
 })
 export class PagesComponent {
 
@@ -39,6 +39,12 @@ export class PagesComponent {
       "name": "Report"
     },
   ]
+
+  isToggleOn: boolean = true
+
+  toggleHandler(){
+    this.isToggleOn = !this.isToggleOn
+  }
 
   ngOnInit() {
   }

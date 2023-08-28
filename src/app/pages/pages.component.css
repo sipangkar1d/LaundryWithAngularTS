@@ -1,0 +1,27 @@
+/*--------------------------------------------------------------
+  # Footer
+  --------------------------------------------------------------*/
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    font-size: 14px;
+    border-top: 1px solid #cddfff;
+    text-align: center;
+    color: #012970;
+    z-index: 9999; 
+  }
+  
+  .footer .copyright {
+    text-align: center;
+    color: #012970;
+  }
+  
+  .footer .credits {
+    padding-top: 5px;
+    text-align: center;
+    font-size: 13px;
+    color: #012970;
+  }
