@@ -20,8 +20,14 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: NotFoundComponent,
+    redirectTo: "notfound404",
+    pathMatch: "full"
+
   },
+  {
+    path : "notfound404",
+    component: NotFoundComponent
+  }
 ];
 
 @NgModule({
