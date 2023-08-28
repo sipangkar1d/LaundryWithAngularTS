@@ -39,6 +39,16 @@
               "src/styles.css"
             ],
             "scripts": [
+              "src/assets/vendor/apexcharts/apexcharts.min.js",
+              "src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/vendor/chart.js/chart.umd.js",
+              "src/assets/vendor/echarts/echarts.min.js",
+              "src/assets/vendor/quill/quill.min.js",
+              "src/assets/vendor/simple-datatables/simple-datatables.js",
+              "src/assets/vendor/tinymce/tinymce.min.js",
+              "src/assets/vendor/php-email-form/validate.js",
+              "src/assets/js/main.js",
+              
               "bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js"

@@ -5,14 +5,14 @@
         <mat-card-content>
           <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
             <mat-form-field>
-              <input matInput placeholder="Email" formControlName="email" />
+              <input matInput placeholder="Email" formControlName="email"/>
               <mat-error *ngIf="loginForm.get('email')?.hasError('required')"
                 >Email is required</mat-error
               >
               <mat-error *ngIf="loginForm.get('email')?.hasError('email')"
                 >Invalid email format</mat-error
               >
-              <mat-icon matSuffix>email</mat-icon>
+              <i class="bi bi-envelope-fill float-end"></i>
             </mat-form-field>
             <mat-form-field>
               <input
@@ -28,7 +28,7 @@
                 *ngIf="loginForm.get('password')?.hasError('minlength')"
                 >Password must be of length 8</mat-error
               >
-              <mat-icon matSuffix>lock</mat-icon>
+              <i class="bi bi-lock-fill float-end"></i>
             </mat-form-field>
             <mat-checkbox>Remember Me!</mat-checkbox>
             <button

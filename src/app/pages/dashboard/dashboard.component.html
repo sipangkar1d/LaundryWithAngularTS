@@ -21,19 +21,6 @@
         <div class="col-xxl-4 col-md-6">
           <div class="card info-card sales-card">
 
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
-
             <div class="card-body">
               <h5 class="card-title">Sales <span>| Today</span></h5>
 
@@ -43,7 +30,6 @@
                 </div>
                 <div class="ps-3">
                   <h6>145</h6>
-                  <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                 </div>
               </div>
@@ -56,19 +42,6 @@
         <div class="col-xxl-4 col-md-6">
           <div class="card info-card revenue-card">
 
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
-
             <div class="card-body">
               <h5 class="card-title">Revenue <span>| This Month</span></h5>
 
@@ -77,8 +50,7 @@
                   <i class="bi bi-currency-dollar"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>$3,264</h6>
-                  <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                  <h6>Rp.7.000.000</h6>
 
                 </div>
               </div>
@@ -92,19 +64,6 @@
 
           <div class="card info-card customers-card">
 
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
-
             <div class="card-body">
               <h5 class="card-title">Customers <span>| This Month</span></h5>
 
@@ -114,7 +73,6 @@
                 </div>
                 <div class="ps-3">
                   <h6>1244</h6>
-                  <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
 
                 </div>
               </div>
@@ -124,9 +82,31 @@
 
         </div><!-- End Customers Card -->
 
-        
+        <div class="card">
+          <div class="card-body">
+            <h1 class="card-title">Transaction</h1>
+            <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
 
-        
+            <!-- Table with stripped rows -->
+            <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns"><div class="datatable-top">
+  <div class="datatable-dropdown">
+          <label>
+              <select class="datatable-selector"><option value="5">5</option><option value="10" selected="">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option></select> entries per page
+          </label>
+      </div>
+  <div class="datatable-search">
+          <input class="datatable-input" placeholder="Search..." type="search" title="Search within table">
+      </div>
+</div>
+<div class="datatable-container"><table class="table datatable datatable-table"><thead><tr><th data-sortable="true" style="width: 5.6669572798605055%;"><a href="#" class="datatable-sorter">#</a></th><th data-sortable="true" style="width: 27.98605056669573%;"><a href="#" class="datatable-sorter">Name</a></th><th data-sortable="true" style="width: 37.75065387968613%;"><a href="#" class="datatable-sorter">Position</a></th><th data-sortable="true" style="width: 9.24149956408021%;"><a href="#" class="datatable-sorter">Age</a></th><th data-sortable="true" style="width: 19.35483870967742%;"><a href="#" class="datatable-sorter">Start Date</a></th></tr></thead><tbody><tr data-index="0"><td>1</td><td>Brandon Jacob</td><td>Designer</td><td>28</td><td>2016-05-25</td></tr><tr data-index="1"><td>2</td><td>Bridie Kessler</td><td>Developer</td><td>35</td><td>2014-12-05</td></tr><tr data-index="2"><td>3</td><td>Ashleigh Langosh</td><td>Finance</td><td>45</td><td>2011-08-12</td></tr><tr data-index="3"><td>4</td><td>Angus Grady</td><td>HR</td><td>34</td><td>2012-06-11</td></tr><tr data-index="4"><td>5</td><td>Raheem Lehner</td><td>Dynamic Division Officer</td><td>47</td><td>2011-04-19</td></tr></tbody></table></div>
+<div class="datatable-bottom">
+  <div class="datatable-info">Showing 1 to 5 of 5 entries</div>
+  <nav class="datatable-pagination"><ul class="datatable-pagination-list"></ul></nav>
+</div></div>
+            <!-- End Table with stripped rows -->
+
+          </div>
+        </div>
 
       </div>
     </div><!-- End Left side columns -->
