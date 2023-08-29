@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../service/auth.service';
+import { AuthService } from './service/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthRequest } from '../model/auth-request';
+import { AuthRequest } from './model/auth-request';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css', './../../app.component.css'],
+  styleUrls: ['./login.component.css', '../app.component.css'],
 })
 export class LoginComponent {
   constructor(
     private readonly fb: FormBuilder,
     private readonly authService: AuthService,
     private readonly router: Router
-  ) 
+  )
   {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -36,11 +36,10 @@ export class LoginComponent {
 
   onLogin(data: AuthRequest) {
     this.isLoading = true;
-    console.log("Login Request : ", data)
     this.authService.login(data).subscribe({
       next : (res) => {
         this.isLoading = false;
-        let token = res.data.token
+        let token = res.data?.token
         if (token) {
           sessionStorage.setItem('token', token)
           this.router.navigateByUrl('/pages')
@@ -51,9 +50,5 @@ export class LoginComponent {
         Swal.fire('Invalid email / password')
       }
     })
-  }
-
-  goToRegister() {
-    this.router.navigate(['/auth/register']);
   }
 }

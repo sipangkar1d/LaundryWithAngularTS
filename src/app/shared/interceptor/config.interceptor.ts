@@ -33,7 +33,7 @@ export class ConfigInterceptor implements HttpInterceptor {
           errorMessage = 'Bad Request';
         } else if (error.status === 401) {
           errorMessage = 'Unauthorized';
-          this.router.navigate(['/auth/login']);
+          this.router.navigate(['/login']);
         } else if (error.status === 404) {
           errorMessage = 'Not Found';
           this.router.navigate(["/notfound404"]);

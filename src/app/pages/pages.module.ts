@@ -11,6 +11,7 @@ import { StaffComponent } from './staff/staff.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductComponent } from './product/product.component';
 import { LandingComponent } from './landing/landing.component';
+import {LoginComponent} from "../login/login.component";
 
 @NgModule({
   declarations: [

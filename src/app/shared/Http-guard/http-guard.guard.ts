@@ -7,7 +7,7 @@ export const httpGuardGuard: CanActivateFn = (route, state) => {
   if (sessionStorage.getItem('token')){
     return true
   } else {
-    router.navigateByUrl('/auth/login')
+    router.navigateByUrl('/login')
     return false
   }
 };
