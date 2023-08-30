@@ -1,16 +1,17 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { PagesRoutingModule } from './pages-routing.module';
-import { CustomerComponent } from './customer/customer.component';
-import { CategoryComponent } from './category/category.component';
-import { PagesComponent } from './pages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ReportComponent } from './report/report.component';
-import { StaffComponent } from './staff/staff.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ProductComponent } from './product/product.component';
-import { LandingComponent } from './landing/landing.component';
+import {PagesRoutingModule} from './pages-routing.module';
+import {CustomerComponent} from './customer/customer.component';
+import {CategoryComponent} from './category/category.component';
+import {PagesComponent} from './pages.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {ReportComponent} from './report/report.component';
+import {StaffComponent} from './staff/staff.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ProductComponent} from './product/product.component';
+import {LandingComponent} from './landing/landing.component';
+import {LoadingComponent} from "../shared/component/loading/loading.component";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,14 @@ import { LandingComponent } from './landing/landing.component';
     StaffComponent,
     ProductComponent,
     LandingComponent,
+    LoadingComponent,
   ],
-  imports: [CommonModule, PagesRoutingModule, ReactiveFormsModule, FormsModule],
+  imports: [
+    CommonModule,
+    PagesRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
+  ],
 })
-export class PagesModule {}
+export class PagesModule {
+}

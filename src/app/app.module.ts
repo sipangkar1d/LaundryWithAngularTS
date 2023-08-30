@@ -7,7 +7,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
-import {LoadingComponent} from './shared/component/loading/loading.component';
 import {AlertComponent} from './shared/component/alert/alert.component';
 import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {HomeComponent} from "./landing-page/home/home.component";
@@ -23,12 +22,12 @@ import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatButtonModule} from "@angular/material/button";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
-    LoadingComponent,
     AlertComponent,
     LandingPageComponent,
     HomeComponent,
@@ -36,7 +35,7 @@ import {MatButtonModule} from "@angular/material/button";
     AboutComponent,
     TeamComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,12 +49,14 @@ import {MatButtonModule} from "@angular/material/button";
     MatInputModule,
     MatIconModule,
     MatCheckboxModule,
-    MatButtonModule
+    MatButtonModule,
+    CommonModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ConfigInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule {
 }
