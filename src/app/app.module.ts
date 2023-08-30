@@ -23,6 +23,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatButtonModule} from "@angular/material/button";
 import {CommonModule} from "@angular/common";
+import { ErrorComponent } from './pages/error/error.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {CommonModule} from "@angular/common";
     TeamComponent,
     ContactComponent,
     LoginComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
