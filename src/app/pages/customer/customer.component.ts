@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {CustomerResponse} from "./model/customer-response";
+import {CustomerResponseModel} from "./model/customer-response.model";
 import {Paging} from "../../shared/model/paging";
 import {CustomerService} from "./service/customer.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {CustomerRequest} from "./model/customer-request";
+import {CustomerRequestModel} from "./model/customer-request.model";
 import Swal from "sweetalert2";
 
 @Component({
@@ -30,7 +30,7 @@ export class CustomerComponent {
     totalPages: 0
   }
 
-  customers: CustomerResponse[] = []
+  customers: CustomerResponseModel[] = []
   customerFound: boolean = false
   currentPage = 1
   initialPaging: number[] = [1, 2, 3]
@@ -126,7 +126,7 @@ export class CustomerComponent {
   }
 
 
-  create(customer: CustomerRequest) {
+  create(customer: CustomerRequestModel) {
     this.isLoading = true
     if (customer.id) {
       this.service.update(customer).subscribe({

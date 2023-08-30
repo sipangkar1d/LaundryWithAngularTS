@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {CustomerRequest} from "../model/customer-request";
+import {CustomerRequestModel} from "../model/customer-request.model";
 import {ResponseWrapper} from "../../../shared/model/response-wrapper";
-import {CustomerResponse} from "../model/customer-response";
+import {CustomerResponseModel} from "../model/customer-response.model";
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +12,12 @@ export class CustomerService {
   constructor(private readonly http: HttpClient) {
   }
 
-  create(customer: CustomerRequest) {
-    return this.http.post<ResponseWrapper<CustomerResponse>>("api/customers", customer)
+  create(customer: CustomerRequestModel) {
+    return this.http.post<ResponseWrapper<CustomerResponseModel>>("api/customers", customer)
   }
 
-  update(customer: CustomerRequest) {
-    return this.http.put<ResponseWrapper<CustomerResponse>>("api/customers", customer)
+  update(customer: CustomerRequestModel) {
+    return this.http.put<ResponseWrapper<CustomerResponseModel>>("api/customers", customer)
   }
 
   delete(id: string) {
@@ -40,14 +40,14 @@ export class CustomerService {
       params.set("keyword", keyword)
     }
 
-    return this.http.get<ResponseWrapper<CustomerResponse[]>>("api/customers", {params})
+    return this.http.get<ResponseWrapper<CustomerResponseModel[]>>("api/customers", {params})
   }
 
   getById(id: string) {
-    return this.http.get<ResponseWrapper<CustomerResponse>>(`api/customers/i/${id}`)
+    return this.http.get<ResponseWrapper<CustomerResponseModel>>(`api/customers/i/${id}`)
   }
 
   getByPhone(phone: string) {
-    return this.http.get<ResponseWrapper<CustomerResponse>>(`api/customers/${phone}`)
+    return this.http.get<ResponseWrapper<CustomerResponseModel>>(`api/customers/${phone}`)
   }
 }
