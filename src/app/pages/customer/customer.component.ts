@@ -31,7 +31,6 @@ export class CustomerComponent {
   }
 
   customers: CustomerResponseModel[] = []
-  customerFound: boolean = false
   currentPage = 1
   initialPaging: number[] = [1, 2, 3]
   isLoading = false
@@ -139,12 +138,7 @@ export class CustomerComponent {
               "Something went wrong",
             )
           }
-          this.customerForm.setValue({
-            id: null,
-            name: null,
-            phone: null,
-            address: null
-          })
+
         },
         error: err => {
           this.isLoading = false
@@ -161,17 +155,17 @@ export class CustomerComponent {
               "Something went wrong",
             )
           }
-          this.customerForm.setValue({
-            id: null,
-            name: null,
-            phone: null,
-            address: null
-          })
         },
         error: err => {
           this.isLoading = false
         }
       })
     }
+    this.customerForm.setValue({
+      id: null,
+      name: null,
+      phone: null,
+      address: null
+    })
   }
 }
