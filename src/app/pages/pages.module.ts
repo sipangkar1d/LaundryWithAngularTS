@@ -11,6 +11,7 @@ import { StaffComponent } from './staff/staff.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductComponent } from './product/product.component';
 import { LandingComponent } from './landing/landing.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { LandingComponent } from './landing/landing.component';
     StaffComponent,
     ProductComponent,
     LandingComponent,
+    ErrorComponent,
   ],
   imports: [CommonModule, PagesRoutingModule, ReactiveFormsModule, FormsModule],
 })
