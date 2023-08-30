@@ -161,11 +161,10 @@ export class CustomerComponent {
         }
       })
     }
-    this.customerForm.setValue({
-      id: null,
-      name: null,
-      phone: null,
-      address: null
-    })
+    this.clearForm()
+  }
+
+  clearForm(){
+    this.customerForm.reset()
   }
 }

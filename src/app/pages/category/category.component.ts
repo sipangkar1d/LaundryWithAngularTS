@@ -109,7 +109,7 @@ export class CategoryComponent {
             timer: 1000
           }).then(value => {
             this.isLoading = false
-
+            this.clearForm()
           })
         },
         error: (err) => {
@@ -133,12 +133,7 @@ export class CategoryComponent {
             timer: 1000
           }).then(value => {
             this.isLoading = false
-            this.categoryForm.setValue({
-              id: null,
-              name: null,
-              phone: null,
-              address: null
-            })
+            this.clearForm()
           })
         },
         error: (err) => {
@@ -166,12 +161,6 @@ export class CategoryComponent {
         this.categories = res.data
         this.paging = res.paging
         this.isLoading = false
-        this.categoryForm.setValue({
-          id: null,
-          name: null,
-          phone: null,
-          address: null
-        })
       }
     })
   }
@@ -225,6 +214,11 @@ export class CategoryComponent {
         this.isLoading = false
       }
     })
+  }
+
+  clearForm() {
+    this.categoryForm.reset();
+    console.log(this.categoryForm.value)
   }
 
 }
