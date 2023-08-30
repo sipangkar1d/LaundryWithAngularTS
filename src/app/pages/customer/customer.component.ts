@@ -173,6 +173,5 @@ export class CustomerComponent {
         }
       })
     }
-    this.service.create(customer).subscribe({})
   }
 }
