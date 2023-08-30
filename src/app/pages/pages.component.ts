@@ -55,7 +55,7 @@ export class PagesComponent {
 
   logOutHandler(){
     sessionStorage.clear()
-    this.router.navigateByUrl('/auth')
+    this.router.navigateByUrl('/login')
   }
 
 }
