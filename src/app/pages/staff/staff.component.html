@@ -1,11 +1,166 @@
 <div class="pagetitle">
-    <h1>Staff</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a>Home</a></li>
-        <li class="breadcrumb-item active">Staff</li>
-      </ol>
-    </nav>
+  <h1>Staff</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a>Home</a></li>
+      <li class="breadcrumb-item active">Staff</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+  
+  
+  <div class="m-3">
+    <div class="card w-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div class="pagetitle p-3">
+            <h2>Staffs List</h2>
+          </div>
+          <div class="p-3">
+            <div class="d-flex align-content-end">
+              <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal"
+                      data-bs-target="#exampleModal">
+                <i class="bi bi-file-plus"></i>
+                Add Staff
+              </button>
+            </div>
+          </div>
+        </div>
+        <!--      End Header Table-->
+  
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">Email</th>
+            <th scope="col" colspan="2" class="d-flex justify-content-center">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let staff of staffs let i = index">
+            <th scope="row">{{paging?.page! * paging?.size! + i + 1}}</th>
+            <td>{{staff.name}}</td>
+            <td>{{staff.phone}}</td>
+            <td>{{staff.address}}</td>
+            <td>{{staff.email}}</td>
+            <td class="d-flex justify-content-evenly">
+              <button type="button" class="btn btn-sm btn-danger"
+                      (click)="delete(staff.id)">
+                Delete
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-between">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination pagination-sm">
+              <li class="page-item">
+                <p role="button" class="page-link disabled me-2">{{staffs!.length}} of {{paging?.count}}</p>
+              </li>
+              <li class="page-item">
+                <p role="button" class="page-link disabled">Size</p>
+              </li>
+              <li class="page-item" *ngFor="let i of [5,10, 100]">
+                <p role="button" class="page-link" [class.active]="paging!.size === i" (click)="sizeHandle(i)">{{i}}</p>
+              </li>
+            </ul>
+          </nav>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination pagination-sm">
+              <li class="page-item" [class.disabled]="initialPaging[0]<=1">
+                <p class="page-link" role="button" aria-label="Previous" (click)="movePagingLeft()">
+                  <span aria-hidden="true">&laquo;</span>
+                </p>
+              </li>
+              <li class="page-item" *ngFor="let i of initialPaging | slice:0:paging!.totalPages">
+                <p role="button" class="page-link" [class.active]="currentPage === i"
+                   (click)="paginationHandle(i)">{{i}}</p>
+              </li>
+              <li class="page-item" [class.disabled]="initialPaging[2]>=paging!.totalPages">
+                <p role="button" class="page-link" href="#" aria-label="Next" (click)="movePagingRight()">
+                  <span aria-hidden="true">&raquo;</span>
+                </p>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- End Page Title -->
+  
+  <!--Loading-->
+  <app-loading *ngIf="isLoading"></app-loading>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">staff Form</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="staffForm" (ngSubmit)="create(staffForm.value)">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" formControlName="email">
+              <div *ngIf="form('email').invalid && (form('email').dirty || form('email').touched)">
+                <p class="text-danger" *ngIf="form('email').errors?.['required']">Email is required</p>
+                <p class="text-danger" *ngIf="form('email').errors?.['email']">Invalid Email</p>
+              </div>
+            </div>
+             <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" formControlName="password">
+              <div *ngIf="form('password').invalid && (form('password').dirty || form('password').touched)">
+                <p class="text-danger" *ngIf="form('password').errors?.['required']">password is required</p>
+                <p class="text-danger" *ngIf="form('password').errors?.['password']">Invalid Email</p>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" formControlName="name">
+              <div
+                *ngIf="form('name').invalid && form('name').dirty || form('name').touched">
+                <p class="text-danger" *ngIf="form('name').errors?.['required']">Name is required</p>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone</label>
+              <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">+62</span>
+                <input type="text" class="form-control" id="phone" placeholder="81234567" aria-describedby="basic-addon1"
+                       formControlName="phone">
+  
+              </div>
+              <div
+                *ngIf="form('phone').invalid && form('phone').dirty || form('phone').touched">
+                <p class="text-danger" *ngIf="form('phone').errors?.['required']">Phone is required</p>
+                <p class="text-danger" *ngIf="form('phone').errors?.['pattern']">Phone format not valid</p>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <input type="text" class="form-control" id="address"
+                     formControlName="address">
+              <div
+                *ngIf="form('address').invalid && form('address').dirty || form('address').touched">
+                <p class="text-danger" *ngIf="form('address').errors?.['required']">Address is required</p>
+              </div>
+            </div>
+            <div class="d-flex mt-3">
+              <button type="submit" class="btn btn-primary w-100" [disabled]="staffForm.invalid"
+                      data-bs-dismiss="modal">Save
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   

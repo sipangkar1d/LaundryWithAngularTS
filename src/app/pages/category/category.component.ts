@@ -11,7 +11,7 @@ import {CustomerRequestModel} from "../customer/model/customer-request.model";
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css', './../../app.component.css']
+  styleUrls: ['./category.component.css']
 })
 export class CategoryComponent {
   categoryForm = new FormGroup<any>({
@@ -136,8 +136,8 @@ export class CategoryComponent {
             this.categoryForm.setValue({
               id: null,
               name: null,
-              phone: null,
-              address: null
+              description: null,
+              price: null
             })
           })
         },
@@ -169,8 +169,8 @@ export class CategoryComponent {
         this.categoryForm.setValue({
           id: null,
           name: null,
-          phone: null,
-          address: null
+          description: null,
+          price: null
         })
       }
     })
