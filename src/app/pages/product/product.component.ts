@@ -131,12 +131,7 @@ export class ProductComponent {
             timer: 1000
           }).then(value => {
             this.isLoading = false
-            this.productForm.setValue({
-              id: null,
-              name: null,
-              stock: null,
-              price: null
-            })
+            this.clearForm()
           })
         },
         error: (err) => {
@@ -164,12 +159,6 @@ export class ProductComponent {
         this.products = res.data
         this.paging = res.paging
         this.isLoading = false
-        this.productForm.setValue({
-          id: null,
-          name: null,
-          stock: null,
-          price: null
-        })
       }
     })
   }
@@ -203,7 +192,6 @@ export class ProductComponent {
         })
       }
     });
-
   }
 
   getById(id: string) {
@@ -224,5 +212,7 @@ export class ProductComponent {
       }
     })
   }
-
+  clearForm(){
+    this.productForm.reset()
+  }
 }

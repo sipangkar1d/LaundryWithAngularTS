@@ -161,7 +161,6 @@ export class CustomerComponent {
         }
       })
     }
-    this.clearForm()
   }
 
   clearForm(){
