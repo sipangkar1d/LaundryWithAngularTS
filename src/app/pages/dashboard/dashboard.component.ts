@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {DashboardService} from "./service/dashboard.service";
-import {DashboardResponse} from "./model/dashboard.model";
+import {DashboardResponse} from "./model/dashboard-response";
 import {Paging} from "../../shared/model/paging";
 import {TransactionResponse} from "../report/model/transaction-response";
 import Swal from "sweetalert2";
