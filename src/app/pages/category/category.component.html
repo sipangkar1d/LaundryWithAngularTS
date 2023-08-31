@@ -122,16 +122,16 @@
                    formControlName="description">
             <div
               *ngIf="form('description').invalid && form('description').dirty || form('description').touched">
-              <p class="text-danger" *ngIf="form('description').errors?.['required']">Phone is required</p>
+              <p class="text-danger" *ngIf="form('description').errors?.['required']">Description is required</p>
             </div>
           </div>
           <div class="mb-3">
             <label for="price" class="form-label">Price</label>
             <input type="number" class="form-control" id="price" formControlName="price" placeholder="Price">
             <div
-              *ngIf="form('description').invalid && form('description').dirty || form('description').touched">
-              <p class="text-danger" *ngIf="form('description').errors?.['required']">Price is required</p>
-              <p class="text-danger" *ngIf="form('description').errors?.['min']">Price can not be less than 0</p>
+              *ngIf="form('price').invalid && form('price').dirty || form('price').touched">
+              <p class="text-danger" *ngIf="form('price').errors?.['required']">Price is required</p>
+              <p class="text-danger" *ngIf="form('price').errors?.['min']">Price cannot be less than 0</p>
             </div>
           </div>
           <div class="d-flex mt-3">

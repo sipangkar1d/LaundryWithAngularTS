@@ -109,7 +109,7 @@ export class CategoryComponent {
             timer: 1000
           }).then(value => {
             this.isLoading = false
-            this.clearForm()
+
           })
         },
         error: (err) => {
