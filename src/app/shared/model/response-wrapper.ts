@@ -3,7 +3,7 @@ import {Paging} from "./paging";
 export interface ResponseWrapper<T> {
   statusCode: number;
   message: string;
-  errors: null;
+  errors: any;
   data: T;
   paging: Paging;
 }

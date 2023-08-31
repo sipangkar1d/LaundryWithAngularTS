@@ -27,7 +27,7 @@
                   <i class="bi bi-cart"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>{{response.customerTotal}}</h6>
+                  <h6>{{dashboardResponse.customerTotal}}</h6>
                 </div>
               </div>
             </div>
@@ -46,7 +46,7 @@
                   <i class="bi bi-currency-dollar"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>Rp {{response.revenueTotal}}</h6>
+                  <h6>Rp {{dashboardResponse.revenueTotal}}</h6>
 
                 </div>
               </div>
@@ -79,65 +79,153 @@
         <!--        </div>-->
         <!-- End Customers Card -->
 
-        <div class="card">
-          <div class="card-body">
-            <h1 class="card-title">Transaction</h1>
-            <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-              <div class="datatable-top">
-                <div class="datatable-dropdown">
-                  <label>
-                    <select class="datatable-selector">
-                      <option value="5">5</option>
-                      <option value="10" selected="">10</option>
-                      <option value="15">15</option>
-                      <option value="20">20</option>
-                      <option value="25">25</option>
-                    </select> entries per page
-                  </label>
-                </div>
+        <!--        <div class="card">-->
+        <!--          <div class="card-body">-->
+        <!--            <h1 class="card-title">Transaction</h1>-->
+        <!--            <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">-->
+        <!--              <div class="datatable-top">-->
+        <!--                <div class="datatable-dropdown">-->
+        <!--                  <label>-->
+        <!--                    <select class="datatable-selector">-->
+        <!--                      <option value="5">5</option>-->
+        <!--                      <option value="10" selected="">10</option>-->
+        <!--                      <option value="15">15</option>-->
+        <!--                      <option value="20">20</option>-->
+        <!--                      <option value="25">25</option>-->
+        <!--                    </select> entries per page-->
+        <!--                  </label>-->
+        <!--                </div>-->
 
-                <div class="datatable-search">
-                  <button type="button" class="btn btn-outline-primary">Add Transaction</button>
-                  <!--                  <input class="datatable-input" placeholder="Search..." type="search" title="Search within table">-->
+        <!--                <div class="datatable-search">-->
+        <!--                  <button type="button" class="btn btn-outline-primary">Add Transaction</button>-->
+        <!--                  &lt;!&ndash;                  <input class="datatable-input" placeholder="Search..." type="search" title="Search within table">&ndash;&gt;-->
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--              <div class="datatable-container">-->
+        <!--                <table class="table">-->
+        <!--                  <thead>-->
+        <!--                  <tr>-->
+        <!--                    <th scope="col">Invoice</th>-->
+        <!--                    <th scope="col">Customer Name</th>-->
+        <!--                    <th scope="col">Paid</th>-->
+        <!--                    <th scope="col">Status</th>-->
+        <!--                    <th scope="col" colspan="2" class="d-flex justify-content-center">Action</th>-->
+        <!--                  </tr>-->
+        <!--                  </thead>-->
+        <!--                  <tbody>-->
+        <!--                  <tr *ngFor="let transaction of transactionResponses let i = index">-->
+        <!--                    <th scope="row">{{transaction.invoice}}</th>-->
+        <!--                    <th scope="row">{{transaction.customerName}}</th>-->
+        <!--                    <th scope="row">{{transaction.isPaid ? "settled" : "unpaid"}}</th>-->
+        <!--                    <th scope="row">{{transaction.status}}</th>-->
+        <!--                    <th scope="row">-->
+        <!--                      <div class="d-flex justify-content-evenly">-->
+        <!--                        <button type="button" class="btn btn-sm btn-outline-success">Paid</button>-->
+        <!--                        <button type="button" class="btn btn-sm btn-outline-info">Status</button>-->
+        <!--                      </div>-->
+        <!--                    </th>-->
+        <!--                  </tr>-->
+
+        <!--                  </tbody>-->
+        <!--                </table>-->
+        <!--              </div>-->
+        <!--              <div class="datatable-bottom">-->
+        <!--                <div class="datatable-info">Showing 1 to 5 of 5 entries</div>-->
+        <!--                <nav class="datatable-pagination">-->
+        <!--                  <ul class="datatable-pagination-list"></ul>-->
+        <!--                </nav>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--            &lt;!&ndash; End Table with stripped rows &ndash;&gt;-->
+
+        <!--          </div>-->
+        <!--        </div>-->
+
+        <div class="m-3">
+          <div class="card w-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <div class="pagetitle p-3">
+                  <h2>Active Transaction</h2>
+                </div>
+                <div class="p-3">
+                  <div class="d-flex align-content-end">
+                    <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" (click)="clearForm()">
+                      <i class="bi bi-file-plus"></i>
+                      Add Transaction
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div class="datatable-container">
-                <table class="table">
-                  <thead>
-                  <tr>
-                    <th scope="col">Invoice</th>
-                    <th scope="col">Customer Name</th>
-                    <th scope="col">Paid</th>
-                    <th scope="col">Status</th>
-                    <th scope="col" colspan="2" class="d-flex justify-content-center">Action</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr *ngFor="let transaction of response.transactionResponses let i = index">
-                    <th scope="row">{{transaction.invoice}}</th>
-                    <th scope="row">{{transaction.customerName}}</th>
-                    <th scope="row">{{transaction.isPaid ? "settled" : "unpaid"}}</th>
-                    <th scope="row">{{transaction.status}}</th>
-                    <th scope="row">
-                      <div class="d-flex justify-content-evenly">
-                        <button type="button" class="btn btn-sm btn-outline-success">Paid</button>
-                        <button type="button" class="btn btn-sm btn-outline-info">Status</button>
-                      </div>
-                    </th>
-                  </tr>
+              <!--      End Header Table-->
 
-                  </tbody>
-                </table>
-              </div>
-              <div class="datatable-bottom">
-                <div class="datatable-info">Showing 1 to 5 of 5 entries</div>
-                <nav class="datatable-pagination">
-                  <ul class="datatable-pagination-list"></ul>
+              <table class="table">
+                <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Invoice</th>
+                  <th scope="col">CustomerName</th>
+                  <th scope="col">Paid</th>
+                  <th scope="col">Status</th>
+                  <th scope="col" colspan="2" class="d-flex justify-content-center">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let transaction of transactionResponse let i = index">
+                  <th scope="row">{{paging?.page! * paging?.size! + i + 1}}</th>
+                  <td>{{transaction.invoice}}</td>
+                  <td>{{transaction.customerName}}</td>
+                  <td>{{transaction.isPaid ? "Settled" : "Outstanding"}}</td>
+                  <td>{{transaction.status}}</td>
+                  <td class="d-flex justify-content-evenly">
+                    <button type="button" class="btn btn-sm btn-success me-2" [disabled]="transaction.isPaid"
+                            (click)="setIsPaid(transaction.id)">
+                      Paid
+                    </button>
+                    <button type="button" class="btn btn-sm btn-warning" (click)="updateStatus(transaction.id)">
+                      Status
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <div class="d-flex justify-content-between">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination pagination-sm">
+                    <li class="page-item">
+                      <p role="button" class="page-link disabled me-2">{{transactionResponse!.length}}
+                        of {{paging?.count}}</p>
+                    </li>
+                    <li class="page-item">
+                      <p role="button" class="page-link disabled">Size</p>
+                    </li>
+                    <li class="page-item" *ngFor="let i of [5,10, 100]">
+                      <p role="button" class="page-link" [class.active]="paging!.size === i"
+                         (click)="sizeHandle(i)">{{i}}</p>
+                    </li>
+                  </ul>
+                </nav>
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination pagination-sm">
+                    <li class="page-item" [class.disabled]="initialPaging[0]<=1">
+                      <p class="page-link" role="button" aria-label="Previous" (click)="movePagingLeft()">
+                        <span aria-hidden="true">&laquo;</span>
+                      </p>
+                    </li>
+                    <li class="page-item" *ngFor="let i of initialPaging | slice:0:paging!.totalPages">
+                      <p role="button" class="page-link" [class.active]="currentPage === i"
+                         (click)="paginationHandle(i)">{{i}}</p>
+                    </li>
+                    <li class="page-item" [class.disabled]="initialPaging[2]>=paging!.totalPages">
+                      <p role="button" class="page-link" href="#" aria-label="Next" (click)="movePagingRight()">
+                        <span aria-hidden="true">&raquo;</span>
+                      </p>
+                    </li>
+                  </ul>
                 </nav>
               </div>
             </div>
-            <!-- End Table with stripped rows -->
-
           </div>
         </div>
 
@@ -154,9 +242,9 @@
 
           <div class="activity">
 
-            <div class="activity-item d-flex" *ngFor="let activity of response.activities">
-              <div class="activite-label"></div> <!-- Time -->
-              <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
+            <div class="activity-item d-flex" *ngFor="let activity of dashboardResponse.activities">
+              <div class="activite-label">{{activity.time}}</div> <!-- Time -->
+              <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
               <div class="activity-content">
                 {{ activity.description }}
               </div>
@@ -173,3 +261,4 @@
 
   </div>
 </section>
+<app-loading *ngIf="isLoading"></app-loading>
