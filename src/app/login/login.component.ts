@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { AuthService } from './service/auth.service';
-import { Router } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthRequest } from './model/auth-request';
+import {Component} from '@angular/core';
+import {AuthService} from './service/auth.service';
+import {Router} from '@angular/router';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthRequest} from './model/auth-request';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,17 +15,23 @@ export class LoginComponent {
     private readonly fb: FormBuilder,
     private readonly authService: AuthService,
     private readonly router: Router
-  )
-  {
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
-  loginForm : FormGroup = new FormGroup({
-    email : new FormControl(''),
-    password : new FormControl('')
+  ngOnInit() {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      this.router.navigateByUrl("/pages")
+    }
+  }
+
+  loginForm: FormGroup = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl('')
   })
 
   form(property: string) {
@@ -37,7 +43,7 @@ export class LoginComponent {
   onLogin(data: AuthRequest) {
     this.isLoading = true;
     this.authService.login(data).subscribe({
-      next : (res) => {
+      next: (res) => {
         this.isLoading = false;
         let token = res.data?.token
         if (token) {
@@ -45,7 +51,7 @@ export class LoginComponent {
           this.router.navigateByUrl('/pages')
         }
       },
-      error : (err) => {
+      error: (err) => {
         this.isLoading = false;
         Swal.fire('Invalid email / password')
       }

@@ -1,21 +1,48 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {DashboardService} from "./service/dashboard.service";
 import {DashboardResponse} from "./model/dashboard-response";
 import {Paging} from "../../shared/model/paging";
 import {TransactionResponse} from "../report/model/transaction-response";
 import Swal from "sweetalert2";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {TransactionRequest} from "../report/model/transaction-request";
+import {CustomerResponseModel} from "../customer/model/customer-response.model";
+import {ProductModel} from "../product/model/product.model";
+import {CategoryModel} from "../category/model/category.model";
+import {toNumbers} from "@angular/compiler-cli/src/version_helpers";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+  form: FormGroup = new FormGroup<any>({})
 
   constructor(
     private readonly service: DashboardService,
+    private fb: FormBuilder,
   ) {
   }
+
+  createTransactionForm() {
+    this.form = this.fb.group({
+        customerPhone: [null],
+        isPaid: [false],
+        transactionDetailRequests: this.fb.array([this.createTransactionDetailForm()])
+      }
+    )
+  }
+
+  createTransactionDetailForm() {
+    return this.fb.group({
+      categoryId: [null],
+      quantity: [null],
+      productId: [null],
+      productQuantity: [null]
+    })
+  }
+
 
   dashboardResponse: DashboardResponse = {
     revenueTotal: 0,
@@ -73,6 +100,7 @@ export class DashboardComponent {
   }
 
   ngOnInit(): void {
+    this.createTransactionForm()
     this.getViewDashboard()
   }
 
@@ -184,7 +212,108 @@ export class DashboardComponent {
     })
   }
 
-  clearForm() {
-    // this.customerForm.reset()
+  createTransaction(transaction: TransactionRequest) {
+    console.log(transaction)
+    this.service.createTransaction(transaction).subscribe({
+      next: (res) => {
+        if (!res.errors) {
+          Swal.fire({
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1000
+          }).then(value => {
+            this.isLoading = false
+            this.getViewDashboard()
+          })
+        } else {
+          Swal.fire(
+            `${res.errors}`,
+          ).then(value => {
+            this.isLoading = false
+          })
+        }
+      }
+    })
   }
+
+  get transactionDetail() {
+    return this.form.get('transactionDetailRequests') as FormArray;
+  }
+
+  addNewProduct() {
+    this.transactionDetail.push(this.createTransactionDetailForm()); // Use createTransactionDetailForm() here as well
+  }
+
+  removeProduct(i: Required<number>) {
+    this.transactionDetail.removeAt(i)
+  }
+
+
+  clearForm() {
+    this.form.reset()
+  }
+
+
+  customers: CustomerResponseModel[] | undefined
+  customerPhone: string = '';
+  customerSelected: string = ''
+
+  customerSearch(data: any) {
+    this.isLoading = true
+    this.service.getAllCustomer(data.target.value, 5, 0).subscribe({
+      next: (res) => {
+        this.customers = res.data
+      }
+    })
+  }
+
+  selectCustomer(customer: CustomerResponseModel) {
+    this.customerSelected = customer.phone
+    this.form.get("customerPhone")?.setValue(this.customerSelected)
+  }
+
+  products: ProductModel[] | undefined
+  productName: string = '';
+  productSelected: string = ''
+
+  productSearch(data: any) {
+    this.isLoading = true
+    this.service.getAllProduct(data.target.value, 5, 0).subscribe({
+      next: (res) => {
+        this.products = res.data
+      }
+    })
+  }
+
+  selectProduct(product: ProductModel, i: Required<number>) {
+    this.productSelected = product.name
+    this.transactionDetail.at(i).get("productId")?.setValue(product.id)
+  }
+
+  setProductQuantity(product: any, i: Required<number>) {
+    this.transactionDetail.at(i).get("productQuantity")?.setValue(parseInt(product.target.value))
+  }
+
+
+  categories: CategoryModel[] | undefined
+  categorySelected: string = ''
+
+  categorySearch(data: any) {
+    this.isLoading = true
+    this.service.getAllCategory(data.target.value, 5, 0).subscribe({
+      next: (res) => {
+        this.categories = res.data
+      }
+    })
+  }
+
+  selectCategory(category: CategoryModel, i: Required<number>) {
+    this.categorySelected = category.name
+    this.transactionDetail.at(i).get("categoryId")?.setValue(category.id)
+  }
+
+  setCategoryQuantity(quantity: any, i: Required<number>) {
+    this.transactionDetail.at(i).get("quantity")?.setValue(parseInt(quantity.target.value))
+  }
+
 }

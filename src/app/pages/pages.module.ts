@@ -12,6 +12,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProductComponent} from './product/product.component';
 import {LandingComponent} from './landing/landing.component';
 import {LoadingComponent} from "../shared/component/loading/loading.component";
+import {NgSelectModule} from "@ng-select/ng-select";
+import {SearchComponent} from "../shared/component/search/search.component";
 
 @NgModule({
   declarations: [
@@ -24,12 +26,14 @@ import {LoadingComponent} from "../shared/component/loading/loading.component";
     ProductComponent,
     LandingComponent,
     LoadingComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
     PagesRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgSelectModule,
   ],
 })
 export class PagesModule {

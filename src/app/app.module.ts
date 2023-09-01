@@ -24,6 +24,10 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatButtonModule} from "@angular/material/button";
 import {CommonModule} from "@angular/common";
 import { ErrorComponent } from './pages/error/error.component';
+import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 @NgModule({
   declarations: [
@@ -37,7 +41,7 @@ import { ErrorComponent } from './pages/error/error.component';
     TeamComponent,
     ContactComponent,
     LoginComponent,
-    ErrorComponent
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,13 +56,18 @@ import { ErrorComponent } from './pages/error/error.component';
     MatIconModule,
     MatCheckboxModule,
     MatButtonModule,
-    CommonModule
+    CommonModule,
+    NgxMatSelectSearchModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    NgSelectModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ConfigInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
-  exports: []
+  exports: [
+  ]
 })
 export class AppModule {
 }

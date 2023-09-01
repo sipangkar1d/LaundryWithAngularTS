@@ -42,7 +42,7 @@
         <tr *ngFor="let customer of customers let i = index">
           <th scope="row">{{paging?.page! * paging?.size! + i + 1}}</th>
           <td>{{customer.name}}</td>
-          <td>{{customer.phone}}</td>
+          <td>+62{{customer.phone}}</td>
           <td>{{customer.address}}</td>
           <td class="d-flex justify-content-evenly">
             <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"

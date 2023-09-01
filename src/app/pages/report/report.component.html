@@ -34,7 +34,6 @@
           <th scope="col">CustomerName</th>
           <th scope="col">Paid</th>
           <th scope="col">Status</th>
-          <th scope="col" class="d-flex justify-content-center">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -44,11 +43,6 @@
           <td>{{transaction.customerName}}</td>
           <td>{{transaction.isPaid ? "Settled" : "Outstanding"}}</td>
           <td>{{transaction.status}}</td>
-          <td class="d-flex justify-content-center">
-            <button type="button" class="btn btn-sm btn-outline-info me-2" (click)="getDetail(transaction.id)">
-              Detail
-            </button>
-          </td>
         </tr>
         </tbody>
       </table>

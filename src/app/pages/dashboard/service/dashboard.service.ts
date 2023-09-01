@@ -4,6 +4,9 @@ import {ResponseWrapper} from "../../../shared/model/response-wrapper";
 import {DashboardResponse} from "../model/dashboard-response";
 import {TransactionResponse} from "../../report/model/transaction-response";
 import {TransactionRequest} from "../../report/model/transaction-request";
+import {CustomerResponseModel} from "../../customer/model/customer-response.model";
+import {ProductModel} from "../../product/model/product.model";
+import {CategoryModel} from "../../category/model/category.model";
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +43,31 @@ export class DashboardService {
   }
 
   createTransaction(transaction: TransactionRequest) {
+    console.log(transaction)
     return this.http.post<ResponseWrapper<TransactionResponse>>("api/transactions", transaction)
+  }
+
+  getAllCustomer(keyword: string, size: number = 5, page: number = 0) {
+    const params = new HttpParams()
+      .set("keyword", keyword)
+      .set("size", size)
+      .set("page", page)
+    return this.http.get<ResponseWrapper<CustomerResponseModel[]>>("api/customers", {params})
+  }
+
+  getAllProduct(keyword: string, size: number = 5, page: number = 0) {
+    const params = new HttpParams()
+      .set("keyword", keyword)
+      .set("size", size)
+      .set("page", page)
+    return this.http.get<ResponseWrapper<ProductModel[]>>("api/products", {params})
+  }
+
+  getAllCategory(keyword: string, size: number = 5, page: number = 0) {
+    const params = new HttpParams()
+      .set("keyword", keyword)
+      .set("size", size)
+      .set("page", page)
+    return this.http.get<ResponseWrapper<CategoryModel[]>>("api/categories", {params})
   }
 }
